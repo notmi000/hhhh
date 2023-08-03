@@ -1,0 +1,162 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <title>Document Request</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body{
+    
+                font-size:larger; 
+                font-family: 'Roboto', sans-serif;
+                line-height: 1.5;
+                background-color: #ffff;
+            }
+    
+            header {
+                width: 100%;
+                background-color: white;
+                align-items: center;
+                border-bottom: 10px solid #FFDB7D;
+                display: flex;
+            }
+    
+            header img {
+                height: auto;
+                max-height: 70px;
+                max-width: 100%;
+            }
+    
+            .header-image-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            h1{
+                text-align: center;
+                font-weight:1000;
+                font-size:xx-large;
+            }
+    
+
+    
+    
+            /*Responsive*/
+            @media screen and (max-width: 500px) {
+          
+                
+                .return-button {
+                    display: inline-block;
+                    padding: 8px 16px;
+                    font-size: 16px;
+                    border: none;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                    height: 70px;
+                }
+                
+                .return-button:hover {
+                    background-color: #E0C96B;
+                }
+                
+            }
+            .card-title{
+                max-width: 1000px;
+                font-weight: bold;
+
+            }
+            .card-text{
+                text-align: left;
+            }
+            .card{
+                max-width: 1000px;
+                width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+                
+            }
+            .card-body{
+                max-width: 1000px;
+       
+            }
+            .container123{
+                margin-top: 50px;
+                width: 600px;
+                margin-left: 50px;
+                border-radius: 8px;
+       
+            }
+
+            button{
+            height: 30px;
+            width: 20%;
+            color: #000000;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #FFDB7D;
+            }
+        </style>
+    </head>
+    <body>
+        <header style="text-decoration: none;">
+            <a href="StudentMainPage.html" class="return-button">
+                <span class="ret">
+                    <div class="header-image-container" style="text-decoration: none;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/109/109618.png?fbclid=IwAR0pUR46hLcBRyU0d9UE_hz_2cCrNMrLyBwinkajzEDlVk1ZKAeoZ8-pzas" alt="Return">
+                        
+                    </div>
+                </span>
+            </a>
+            <h1 style="margin-left: 70%;">Document Request</h1>
+        </header>
+        <div class="container">
+            <div class="row" id="documentsContainer"></div>
+        </div>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+            // Use JavaScript to fetch data from view.php
+            fetch('view docs.php')
+                .then(response => response.json())
+                .then(data => {
+                    const documentsContainer = document.getElementById('documentsContainer');
+                    data.forEach(document => {
+                        const card = `
+                        <div class="container123" align="center">
+                            
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" align="left">${document.fullname}&nbsp;-&nbsp;${document.studentNum}</h5>
+                                    <p class="card-text">Requested Document:&nbsp;&nbsp; ${document.note}</p>
+                                    <p class="card-text">Notes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N/A</p>
+                                    <a href="https://outlook.live.com/owa/"><button class="button" onclick="">Email</button></a>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                        `;
+                        documentsContainer.innerHTML += card;
+                    });
+                })
+                .catch(error => console.error(error));
+
+         
+        </script>
+    </body>
+    </html>
